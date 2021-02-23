@@ -14,10 +14,15 @@ import { Component } from "@angular/core";
         <br/><br/>
         
         <button (click) = "onSave()">Save</button> 
+
+        <img [src]="imgUrl"/>
+
         <br/><br/>
     `
 })
 export default class ContactComponent {
+
+    public imgUrl: string = "https://avatars.githubusercontent.com/u/1?v=4";
 
     public contact = {
         name: "",
