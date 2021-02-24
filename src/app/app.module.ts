@@ -6,14 +6,18 @@ import ContactComponent from "./contact/contact.component";
 import FooterComponent from "./footer/footer.component";
 import HeaderComponent from "./header/header.component";
 import MainComponent from "./main/main.component";
+import ProductListComponent from "./products/product-list.component";
 import ResultComponent from "./result/result.component";
+import UserListComponent from "./users/user-list.component";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
     declarations: [AppComponent,
         HeaderComponent,
-        FooterComponent, 
-        MainComponent, ContactComponent, ResultComponent],
-    imports: [BrowserModule, FormsModule],
+        FooterComponent,
+        MainComponent, ContactComponent,
+        ResultComponent, ProductListComponent, UserListComponent],
+    imports: [BrowserModule, FormsModule, HttpClientModule],
     providers: [],
     bootstrap: [AppComponent]
 })

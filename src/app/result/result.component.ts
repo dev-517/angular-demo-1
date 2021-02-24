@@ -65,6 +65,4 @@ export default class ResultComponent {
         if (this.marks >= 40) return true;
         else return false;
     }
-
-
 }

@@ -9,7 +9,7 @@ import { Component } from "@angular/core";
 @Component({
     selector: 'app-main',
     template: `<h1 [class.inactive]="shouldApply">Main</h1>
-        <app-result></app-result>
+        <app-user-list></app-user-list>
     `
 })
 class MainComponent {
