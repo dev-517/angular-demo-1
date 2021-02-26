@@ -9,11 +9,10 @@ import { Component } from "@angular/core";
 @Component({
     selector: 'app-main',
     template: `<h1 [class.inactive]="shouldApply">Main</h1>
-        <app-user-list></app-user-list>
+        <app-product-list></app-product-list>
     `
 })
 class MainComponent {
-
     shouldApply: boolean = true;
 
 }

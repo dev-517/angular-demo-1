@@ -10,13 +10,17 @@ import ProductListComponent from "./products/product-list.component";
 import ResultComponent from "./result/result.component";
 import UserListComponent from "./users/user-list.component";
 import { HttpClientModule } from "@angular/common/http";
+import UserComponent from "./users/user.component";
+import ProductComponent from "./products/product.component";
+import TimePipe from "./common/time.pipe";
 
 @NgModule({
     declarations: [AppComponent,
         HeaderComponent,
         FooterComponent,
         MainComponent, ContactComponent,
-        ResultComponent, ProductListComponent, UserListComponent],
+        ResultComponent, ProductListComponent,
+        UserListComponent, UserComponent, ProductComponent, TimePipe],
     imports: [BrowserModule, FormsModule, HttpClientModule],
     providers: [],
     bootstrap: [AppComponent]

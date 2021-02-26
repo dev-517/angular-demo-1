@@ -4,25 +4,24 @@ import { Component } from "@angular/core";
 
 @Component({
     selector: 'app-user-list',
-    template: ` <h3>Users</h3>
-
-    {{users | json}}
-        <div>
+    template: `
+        <div class="col-md-5">
+        <h3>Users</h3>
+        <hr/>
             <div *ngFor="let user of users">
-                <h4>{{user.login}}</h4>
+                <app-user [data]="user"></app-user>
             </div>
         </div>
-    
     `
 })
 export default class UserListComponent {
 
-    users = [];
+    users: any = [];
 
     // DI
     constructor(http: HttpClient) {
         http.get("https://api.github.com/users")
-            .subscribe(function (res) {
+            .subscribe((res) => {
                 this.users = res;
                 console.log(this.users);
             });

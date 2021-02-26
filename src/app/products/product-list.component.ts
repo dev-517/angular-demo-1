@@ -1,8 +1,6 @@
 import { Component } from "@angular/core";
-import * as moment from "moment";
 
 // pipe: transform data
-
 @Component({
     selector: 'app-product-list',
     template: `<h3>Products</h3>
@@ -19,17 +17,8 @@ import * as moment from "moment";
             </thead>
             <tbody>
                 <tr *ngFor="let product of products">
-                    <td>{{product.brand | uppercase}}</td>
-                    <td>{{product.model | lowercase}}</td>
-                    <td>{{product.price | currency}}</td>
-                    <td>
-                        <input  disabled type="checkbox" [checked]="product.inStock"/>
-                    </td>
-                    <td>{{ getRelativeTime(product.updatedDate)}}</td>
-                    <td>
-                        <img class="rounded-circle" [src]="product.img" width="130" height="120" />
-                    </td>
-                </tr>
+                    <app-product [product]="product"></app-product>
+                </tr>  
             </tbody>
         </table>
     `
@@ -53,9 +42,4 @@ export default class ProductListComponent {
         updatedDate:Date.parse("02/22/2021"),
         img: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.8TsXtQmR08UNiq4okVXAvwHaEo%26pid%3DApi&f=1"
     }];
-
-
-    public getRelativeTime(dt): string {
-        return moment(dt).fromNow();
-    }
 }
