@@ -13,6 +13,7 @@ import { HttpClientModule } from "@angular/common/http";
 import UserComponent from "./users/user.component";
 import ProductComponent from "./products/product.component";
 import TimePipe from "./common/time.pipe";
+import ProductService from "./services/product.service";
 
 @NgModule({
     declarations: [AppComponent,
@@ -22,7 +23,7 @@ import TimePipe from "./common/time.pipe";
         ResultComponent, ProductListComponent,
         UserListComponent, UserComponent, ProductComponent, TimePipe],
     imports: [BrowserModule, FormsModule, HttpClientModule],
-    providers: [],
+    providers: [ProductService],
     bootstrap: [AppComponent]
 })
 export default class AppModule { }

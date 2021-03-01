@@ -3,16 +3,16 @@ import { Component, Input } from "@angular/core";
 @Component({
     selector: 'app-product',
     template: `
-    <td>{{product.brand | uppercase}}</td>
-    <td>{{product.model | lowercase}}</td>
-    <td>{{product.price | currency}}</td>
-    <td>
-        <input  disabled type="checkbox" [checked]="product.inStock"/>
-    </td>
-    <td>{{ product.updatedDate | time}}</td>
-    <td>
-        <img class="rounded-circle" [src]="product.img" width="130" height="120" />
-    </td>`
+    <div class="card col-md-3" style="margin-top:10px">
+        <img class="card-img-top" [src]="product.image"/>
+        <div class="card-body">
+            <h5>{{product.brand | uppercase}}</h5>
+            <h6>{{product.model | lowercase}}</h6>
+            <b>{{product.price | currency}}</b>
+            <div>Last Updated: {{ product.updatedDate | time}}</div>
+            <button [disabled]="!product.inStock" class="btn btn-sm btn-primary">Buy Now</button>
+       </div>
+    </div>`
 })
 export default class ProductComponent {
     @Input() product: any;
