@@ -11,9 +11,14 @@ export default class ProductService {
     //     this.http = http;
     // }
 
-    constructor(private http:HttpClient){}
+    constructor(private http: HttpClient) { }
 
-    get() {
+    public get() {
         return this.http.get("https://dl-product.herokuapp.com/api/products");
+    }
+
+    // payload/body
+    public post(product) {
+        return this.http.post("https://dl-product.herokuapp.com/api/products", product);
     }
 }

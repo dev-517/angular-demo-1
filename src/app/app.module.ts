@@ -14,6 +14,7 @@ import UserComponent from "./users/user.component";
 import ProductComponent from "./products/product.component";
 import TimePipe from "./common/time.pipe";
 import ProductService from "./services/product.service";
+import AddProductComponent from "./products/add-product.component";
 
 @NgModule({
     declarations: [AppComponent,
@@ -21,7 +22,8 @@ import ProductService from "./services/product.service";
         FooterComponent,
         MainComponent, ContactComponent,
         ResultComponent, ProductListComponent,
-        UserListComponent, UserComponent, ProductComponent, TimePipe],
+        UserListComponent, UserComponent, ProductComponent,
+        TimePipe, AddProductComponent],
     imports: [BrowserModule, FormsModule, HttpClientModule],
     providers: [ProductService],
     bootstrap: [AppComponent]

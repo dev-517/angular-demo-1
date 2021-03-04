@@ -3,14 +3,16 @@ import { Component, Input } from "@angular/core";
 @Component({
     selector: 'app-product',
     template: `
-    <div class="card col-md-3" style="margin-top:10px">
-        <img class="card-img-top" [src]="product.image"/>
-        <div class="card-body">
-            <h5>{{product.brand | uppercase}}</h5>
-            <h6>{{product.model | lowercase}}</h6>
-            <b>{{product.price | currency}}</b>
-            <div>Last Updated: {{ product.updatedDate | time}}</div>
-            <button [disabled]="!product.inStock" class="btn btn-sm btn-primary">Buy Now</button>
+    <div class="col-md-3">
+        <div class="card" style="margin-top:10px">
+            <img class="card-img-top" [src]="product.image"/>
+            <div class="card-body">
+                <h5>{{product.brand | uppercase}}</h5>
+                <h6>{{product.model | lowercase}}</h6>
+                <b>{{product.price | currency}}</b>
+                <div>Last Updated: {{ product.updatedDate | time}}</div>
+                <button [disabled]="!product.inStock" class="btn btn-sm btn-primary">Buy Now</button>
+        </div>
        </div>
     </div>`
 })

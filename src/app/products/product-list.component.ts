@@ -5,6 +5,9 @@ import ProductService from "../services/product.service";
 @Component({
     selector: 'app-product-list',
     template: `
+            <div *ngIf="error" class="offset-md-1 col-md-6 alert alert-danger">
+                Failed to load data
+            </div>
             <div *ngIf="loading" class="loader">
                 <img src="../assets/loading.gif"/>
                 Loading...
@@ -21,6 +24,7 @@ export default class ProductListComponent {
 
     products: any = [];
     loading: boolean = false;
+    error: boolean = false;
 
     // constructor injection
     constructor(svc: ProductService) {
@@ -30,6 +34,9 @@ export default class ProductListComponent {
         svc.get().subscribe((res: any) => {
             console.log(res);
             this.products = res.data;
+            this.loading = false;
+        }, e => {
+            this.error = true;
             this.loading = false;
         });
     }
