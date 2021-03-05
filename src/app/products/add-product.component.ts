@@ -8,36 +8,8 @@ import ProductService from "../services/product.service";
 
 @Component({
     selector: 'app-add-product',
-    template: `
-
-    <div class="offset-md-1 col-md-5">
-        <div *ngIf="success" class="alert alert-success">
-            Successfully Saved!
-        </div>
-        <div *ngIf="hasError" class="alert alert-danger">
-            Failed to Save
-        </div>
-        <form>
-            <h3>Add New Product</h3>
-            <div class="form-group">
-                <input name="brand" required [(ngModel)]="product.brand" class="form-control" type="text" placeholder="Brand"/>
-            </div>
-            <div class="form-group">
-                <input name="model" minlength="3" maxlength="10" [(ngModel)]="product.model" class="form-control" type="text" placeholder="Model"/>
-            </div>
-            <div class="form-group">
-                <input name="price" [(ngModel)]="product.price" class="form-control" type="text" placeholder="Price"/>
-            </div>
-            <div class="form-group">
-                <label>In Stock</label>
-                <input name="inStock" [(ngModel)]="product.inStock" type="checkbox"/>
-            </div>
-            <div class="form-group">
-                <button (click)="onSave()" class="btn btn-primary">Save</button>
-            </div>
-        </form>
-    </div>
-    `
+    styleUrls: ['add-product.css'],
+    templateUrl: 'add-product.component.html'
 })
 export default class AddProductComponent {
 

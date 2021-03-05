@@ -1,0 +1,62 @@
+<div class="offset-md-1 col-md-5">
+    <div *ngIf="success" class="alert alert-success">
+        Successfully Saved!
+    </div>
+    <div *ngIf="hasError" class="alert alert-danger">
+        Failed to Save
+    </div>
+    <form #frm="ngForm">
+        <h3>Add New Product</h3>
+        <div class="form-group">
+            <input autocomplete="off" #brand="ngModel" name="brand" minlength="2" maxlength="10" required
+                [(ngModel)]="product.brand" class="form-control" type="text" placeholder="Brand" />
+            <span class="text-danger" *ngIf="brand.touched && brand.errors?.required">Brand is required</span>
+            <span class="text-danger" *ngIf="brand.touched && brand.errors?.minlength">Min.2 characters</span>
+            <span class="text-danger" *ngIf="brand.touched && brand.errors?.maxlength">Max.10 characters</span>
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" #model="ngModel" required name="model" [(ngModel)]="product.model"
+                class="form-control" type="text" placeholder="Model" />
+            <span *ngIf="model.touched && model.errors?.required" class="text-danger">Model is required</span>
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" name="price" [(ngModel)]="product.price" class="form-control" type="text"
+                placeholder="Price" />
+        </div>
+        <div class="form-group">
+            <label>In Stock</label>
+            <input name="inStock" [(ngModel)]="product.inStock" type="checkbox" />
+        </div>
+        <div class="form-group">
+            <input name="phone" #phone="ngModel" autocomplete="off" required class="form-control" type="text"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Phone" [(ngModel)]="product.phone" />
+
+            <span [hidden]="!phone.touched || !phone.errors?.required" class="text-danger">Phone is Required</span>
+            <span [hidden]="!phone.touched || !phone.errors?.pattern" class="text-danger">Invalid phone number</span>
+        </div>
+        <div class="form-group">
+            <button [disabled]="frm.invalid" (click)="onSave()" class="btn btn-primary">Save</button>
+        </div>
+
+        <table class="table">
+            <tr>
+                <td>Field</td>
+                <td>Valid</td>
+                <td>Invalid</td>
+                <td>Pristine</td>
+                <td>Dirty</td>
+                <td>Touched</td>
+                <td>Error</td>
+            </tr>
+            <tr>
+                <td>Brand</td>
+                <td>{{brand.valid}}</td>
+                <td>{{brand.invalid}}</td>
+                <td>{{brand.pristine}}</td>
+                <td>{{brand.dirty}}</td>
+                <td>{{brand.touched}}</td>
+                <td>{{brand.errors | json}}</td>
+            </tr>
+        </table>
+    </form>
+</div>
