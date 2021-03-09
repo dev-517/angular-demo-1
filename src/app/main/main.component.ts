@@ -8,7 +8,8 @@ import { Component } from "@angular/core";
 
 @Component({
     selector: 'app-main',
-    template: `<h1 [class.inactive]="shouldApply">Main</h1>
+    template: `
+        <app-header></app-header>
         <app-reactive-form></app-reactive-form>
         <app-product-list></app-product-list>
     `

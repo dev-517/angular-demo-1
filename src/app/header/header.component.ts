@@ -3,21 +3,27 @@ import { Component } from "@angular/core";
 @Component({
     selector: 'app-header',
     template: `
-       <h4> {{name}} </h4>
-       <input type="text" [(ngModel)]="name" />
-        <div>My Cool WebSite</div>
-        <div>
-            <ul>
-                <li><a href="">Home</a></li>
-                <li><a href="">About</a></li>
-                <li><a href="">Products</a></li>
-                <li><a href="">Contact</a></li>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">My Products App</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+            </li>
             </ul>
         </div>
+    </nav>
     `
 })
-class HeaderComponent {
-    public name: string = "abcdfdd";
-}
+export default class HeaderComponent {
 
-export default HeaderComponent;
+}
