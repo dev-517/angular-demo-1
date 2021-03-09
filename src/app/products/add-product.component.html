@@ -28,11 +28,8 @@
             <input name="inStock" [(ngModel)]="product.inStock" type="checkbox" />
         </div>
         <div class="form-group">
-            <input name="phone" #phone="ngModel" autocomplete="off" required class="form-control" type="text"
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Phone" [(ngModel)]="product.phone" />
-
-            <span [hidden]="!phone.touched || !phone.errors?.required" class="text-danger">Phone is Required</span>
-            <span [hidden]="!phone.touched || !phone.errors?.pattern" class="text-danger">Invalid phone number</span>
+            <label>Image</label>
+            <input name="image" type="file" (change)="onFileChange($event)" />
         </div>
         <div class="form-group">
             <button [disabled]="frm.invalid" (click)="onSave()" class="btn btn-primary">Save</button>

@@ -21,12 +21,29 @@ export default class AddProductComponent {
     public product: any = {};
 
     public onSave(): void {
-        this.productSvc.post(this.product)
+        const formData = this.getFormData();
+
+        this.productSvc.post(formData)
             .subscribe(res => {
                 this.reset();
             }, e => {
                 this.setError();
             });
+    }
+
+    private getFormData() {
+        const formData = new FormData();
+
+        for (let key in this.product) {
+            formData.append(key, this.product[key]);
+        }
+
+        // formData.append("brand", this.product.brand);
+        // formData.append("model", this.product.model);
+        // formData.append("price", this.product.price);
+        // formData.append("inStock", this.product.inStock);
+        // formData.append("image", this.product.image);
+        return formData;
     }
 
     private reset(): void {
@@ -38,5 +55,11 @@ export default class AddProductComponent {
     public setError(): void {
         this.success = false;
         this.hasError = true;
+    }
+
+    public onFileChange(event): void {
+        if (event.target.files.length > 0) {
+            this.product.image = event.target.files[0];
+        }
     }
 }
