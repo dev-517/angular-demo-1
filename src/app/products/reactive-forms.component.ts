@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Form, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import ProductService from "../services/product.service";
 
 
@@ -36,10 +36,9 @@ import ProductService from "../services/product.service";
                     <input type="checkbox" formControlName="inStock"/>
                  </div>
                  <div class="form-group">
-                    <input class="form-control" type="text" placeholder="Phone" formControlName="phone"/>
-                    <span class="text-danger" *ngIf="frm.controls.phone.touched && frm.controls.phone.errors?.required">Phone is Required</span>
-                    <span class="text-danger" *ngIf="frm.controls.phone.touched && frm.controls.phone.errors?.pattern">Phone is invalid</span>
-                 </div>
+                    <label>Image</label>
+                    <input type="file" (change)="onFileChange($event)"/>
+              </div>
                  <div class="form-group">
                     <button [disabled]="frm.invalid" (click)="onSave()" class="btn btn-success">Save</button>
                 </div>
@@ -60,12 +59,14 @@ export default class ReactiveFormsComponent {
             model: ['', [Validators.required]],
             price: [0,],
             inStock: [true],
-            phone: ['', [Validators.required, Validators.pattern("[0-9]{3}-[0-9]{3}-[0-9]{4}")]]
+            image: []
         });
     }
 
     public onSave(): void {
-        this.productSvc.post(this.frm.value)
+        const formData = this.getFormData();
+
+        this.productSvc.post(formData)
             .subscribe(res => {
                 this.frm.reset();
                 this.isSuccess = true;
@@ -78,10 +79,35 @@ export default class ReactiveFormsComponent {
             });
     }
 
+    private getFormData() {
+        const formData = new FormData();
+
+        for (let key in this.frm.value) {
+            formData.append(key, this.frm.value[key]);
+        }
+
+
+        // formData.append("brand", this.frm.value.brand);
+        // formData.append("model", this.frm.value.model);
+        // formData.append("price", this.frm.value.price);
+        // formData.append("inStock", this.frm.value.inStock);
+        // formData.append("image", this.frm.value.image);
+
+        return formData;
+    }
+
     private reset(): void {
         setTimeout(() => {
             this.isSuccess = false;
             this.hasError = false;
         }, 2000);
+    }
+
+    public onFileChange(event): void {
+        if (event.target.files.length > 0) {
+            this.frm.patchValue({
+                image: event.target.files[0]
+            });
+        }
     }
 }
