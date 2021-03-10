@@ -8,16 +8,19 @@ import { Component } from "@angular/core";
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" routerLink="/">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" routerLink="/about">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Products</a>
+                <a class="nav-link" routerLink="/products">Products</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
+                <a class="nav-link" routerLink="/users">Users</a>
+             </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/contact">Contact</a>
             </li>
             </ul>
         </div>

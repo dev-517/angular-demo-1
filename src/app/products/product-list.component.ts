@@ -5,6 +5,7 @@ import ProductService from "../services/product.service";
 @Component({
     selector: 'app-product-list',
     template: `
+            <button class="btn btn-info" routerLink="/new">Add New Product</button>
             <div *ngIf="error" class="offset-md-1 col-md-6 alert alert-danger">
                 Failed to load data
             </div>
@@ -15,7 +16,7 @@ import ProductService from "../services/product.service";
             <div class="offset-md-1">
                 <h3>Products</h3>
                 <div *ngFor="let product of products">
-                    <app-product [product]="product"></app-product>
+                    <app-product [routerLink]="'/products/'+product._id" [product]="product"></app-product>
                 </div>
             </div> 
     `

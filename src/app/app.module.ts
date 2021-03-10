@@ -16,6 +16,22 @@ import TimePipe from "./common/time.pipe";
 import ProductService from "./services/product.service";
 import AddProductComponent from "./products/add-product.component";
 import ReactiveFormsComponent from "./products/reactive-forms.component";
+import { RouterModule } from "@angular/router";
+import HomeComponent from "./home/home.component";
+import AboutComponent from "./about/about.component";
+import NotFoundComponent from "./not-found/not-found.component";
+import ProductDetailComponent from "./products/product-detail.component";
+
+const ROUTES = [{ path: '', component: HomeComponent },
+{ path: 'products', component: ProductListComponent },
+{ path: 'about', component: AboutComponent },
+{ path: 'contact', component: ContactComponent },
+{ path: 'users', component: UserListComponent },
+{ path: 'new', component: AddProductComponent },
+{ path: 'products/:id', component: ProductDetailComponent },
+// { path: '**', redirectTo: '' },
+{ path: '**', component: NotFoundComponent }
+];
 
 @NgModule({
     declarations: [AppComponent,
@@ -24,8 +40,10 @@ import ReactiveFormsComponent from "./products/reactive-forms.component";
         MainComponent, ContactComponent,
         ResultComponent, ProductListComponent,
         UserListComponent, UserComponent, ProductComponent,
-        TimePipe, AddProductComponent,ReactiveFormsComponent],
-    imports: [BrowserModule, FormsModule, HttpClientModule, ReactiveFormsModule],
+        TimePipe, AddProductComponent, ReactiveFormsComponent, HomeComponent,
+        AboutComponent, NotFoundComponent, ProductDetailComponent],
+    imports: [BrowserModule, FormsModule, HttpClientModule,
+        ReactiveFormsModule, RouterModule.forRoot(ROUTES)],
     providers: [ProductService],
     bootstrap: [AppComponent]
 })

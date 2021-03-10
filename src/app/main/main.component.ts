@@ -10,8 +10,9 @@ import { Component } from "@angular/core";
     selector: 'app-main',
     template: `
         <app-header></app-header>
-        <app-reactive-form></app-reactive-form>
-        <app-product-list></app-product-list>
+        <div class="container" style="margin-top:50px">
+            <router-outlet></router-outlet>
+        </div>
     `
 })
 class MainComponent {

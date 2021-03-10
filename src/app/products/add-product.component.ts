@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 import ProductService from "../services/product.service";
 
 // template driven forms
@@ -16,7 +17,7 @@ export default class AddProductComponent {
     public success: boolean = false;
     public hasError: boolean = false;
 
-    constructor(private productSvc: ProductService) { }
+    constructor(private productSvc: ProductService, private router: Router) { }
 
     public product: any = {};
 
@@ -26,6 +27,8 @@ export default class AddProductComponent {
         this.productSvc.post(formData)
             .subscribe(res => {
                 this.reset();
+                //navigate to product list page
+                this.router.navigate(['/products']);
             }, e => {
                 this.setError();
             });
