@@ -21,16 +21,25 @@ import HomeComponent from "./home/home.component";
 import AboutComponent from "./about/about.component";
 import NotFoundComponent from "./not-found/not-found.component";
 import ProductDetailComponent from "./products/product-detail.component";
+import NewReviewComponent from "./reviews/new-review.component";
+import ReviewsComponent from "./reviews/reviews.component";
 
-const ROUTES = [{ path: '', component: HomeComponent },
-{ path: 'products', component: ProductListComponent },
-{ path: 'about', component: AboutComponent },
-{ path: 'contact', component: ContactComponent },
-{ path: 'users', component: UserListComponent },
-{ path: 'new', component: AddProductComponent },
-{ path: 'products/:id', component: ProductDetailComponent },
-// { path: '**', redirectTo: '' },
-{ path: '**', component: NotFoundComponent }
+const ROUTES = [
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: 'home', component: HomeComponent },
+    { path: 'products', component: ProductListComponent },
+    { path: 'about', component: AboutComponent },
+    { path: 'contact', component: ContactComponent },
+    { path: 'users', component: UserListComponent },
+    { path: 'new', component: AddProductComponent },
+    {
+        path: 'products/:id', component: ProductDetailComponent, children: [
+            { path: '', redirectTo: 'new', pathMatch: 'full' },
+            { path: 'reviews', component: ReviewsComponent },
+            { path: 'new', component: NewReviewComponent }]
+    },
+    // { path: '**', redirectTo: '' },
+    { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
@@ -41,7 +50,8 @@ const ROUTES = [{ path: '', component: HomeComponent },
         ResultComponent, ProductListComponent,
         UserListComponent, UserComponent, ProductComponent,
         TimePipe, AddProductComponent, ReactiveFormsComponent, HomeComponent,
-        AboutComponent, NotFoundComponent, ProductDetailComponent],
+        AboutComponent, NotFoundComponent, ProductDetailComponent,
+        NewReviewComponent, ReviewsComponent],
     imports: [BrowserModule, FormsModule, HttpClientModule,
         ReactiveFormsModule, RouterModule.forRoot(ROUTES)],
     providers: [ProductService],

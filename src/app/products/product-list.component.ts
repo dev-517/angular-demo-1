@@ -15,6 +15,7 @@ import ProductService from "../services/product.service";
             </div>
             <div class="offset-md-1">
                 <h3>Products</h3>
+                <div *ngIf="products.length===0" class="alert alert-info">No Records Found</div>
                 <div *ngFor="let product of products">
                     <app-product [routerLink]="'/products/'+product._id" [product]="product"></app-product>
                 </div>
