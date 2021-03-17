@@ -23,6 +23,8 @@ import NotFoundComponent from "./not-found/not-found.component";
 import ProductDetailComponent from "./products/product-detail.component";
 import NewReviewComponent from "./reviews/new-review.component";
 import ReviewsComponent from "./reviews/reviews.component";
+import LoginComponent from "./login/login.component";
+import UserService from "./common/user.service";
 
 const ROUTES = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -32,6 +34,7 @@ const ROUTES = [
     { path: 'contact', component: ContactComponent },
     { path: 'users', component: UserListComponent },
     { path: 'new', component: AddProductComponent },
+    { path: 'login', component: LoginComponent },
     {
         path: 'products/:id', component: ProductDetailComponent, children: [
             { path: '', redirectTo: 'new', pathMatch: 'full' },
@@ -51,10 +54,10 @@ const ROUTES = [
         UserListComponent, UserComponent, ProductComponent,
         TimePipe, AddProductComponent, ReactiveFormsComponent, HomeComponent,
         AboutComponent, NotFoundComponent, ProductDetailComponent,
-        NewReviewComponent, ReviewsComponent],
+        NewReviewComponent, ReviewsComponent, LoginComponent],
     imports: [BrowserModule, FormsModule, HttpClientModule,
         ReactiveFormsModule, RouterModule.forRoot(ROUTES)],
-    providers: [ProductService],
+    providers: [ProductService, UserService],
     bootstrap: [AppComponent]
 })
 export default class AppModule { }
