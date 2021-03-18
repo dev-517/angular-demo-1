@@ -13,7 +13,6 @@ import { HttpClientModule } from "@angular/common/http";
 import UserComponent from "./users/user.component";
 import ProductComponent from "./products/product.component";
 import TimePipe from "./common/time.pipe";
-import ProductService from "./services/product.service";
 import AddProductComponent from "./products/add-product.component";
 import ReactiveFormsComponent from "./products/reactive-forms.component";
 import { RouterModule } from "@angular/router";
@@ -24,7 +23,8 @@ import ProductDetailComponent from "./products/product-detail.component";
 import NewReviewComponent from "./reviews/new-review.component";
 import ReviewsComponent from "./reviews/reviews.component";
 import LoginComponent from "./login/login.component";
-import UserService from "./common/user.service";
+import CommonModule from "./common/common.module";
+import AppRouterModule from "./app-router.module";
 
 const ROUTES = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -56,8 +56,10 @@ const ROUTES = [
         AboutComponent, NotFoundComponent, ProductDetailComponent,
         NewReviewComponent, ReviewsComponent, LoginComponent],
     imports: [BrowserModule, FormsModule, HttpClientModule,
-        ReactiveFormsModule, RouterModule.forRoot(ROUTES)],
-    providers: [ProductService, UserService],
+        ReactiveFormsModule, AppRouterModule, CommonModule],
+    providers: [],
     bootstrap: [AppComponent]
 })
 export default class AppModule { }
+
+

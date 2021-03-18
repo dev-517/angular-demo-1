@@ -16,7 +16,12 @@ export default class ProductService {
     constructor(private http: HttpClient) { }
 
     public get() {
-        return this.http.get("https://dl-product.herokuapp.com/api/products");
+        const options = {
+            headers: {
+                authorization: ''
+            }
+        };
+        return this.http.get("https://dl-product.herokuapp.com/api/products", options);
     }
 
     // payload/body
