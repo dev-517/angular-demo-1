@@ -10,4 +10,8 @@ export default class UserService {
     public login(user: any) {
         return this.http.post("https://dl-product.herokuapp.com/api/users/login", user);
     }
+
+    public isUserLoggedIn(): boolean {
+        return !!localStorage.getItem("token");
+    }
 }

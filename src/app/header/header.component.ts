@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
+import UserService from "../common/user.service";
 
 @Component({
     selector: 'app-header',
@@ -24,7 +26,8 @@ import { Component } from "@angular/core";
                 </li>
             </ul>
             <div class="right">
-                <button routerLink="/login" class="btn btn-sm btn-danger">Login</button>
+                <button *ngIf="!isLoggedIn()" routerLink="/login" class="btn btn-sm btn-danger">Login</button>
+                <button *ngIf="isLoggedIn()" class="btn btn-sm btn-danger" (click)="logout()">Logout</button>
             </div>
         </div>
     </nav>
@@ -32,4 +35,14 @@ import { Component } from "@angular/core";
 })
 export default class HeaderComponent {
 
+    constructor(private router: Router, private userSvc: UserService) { }
+
+    logout() {
+        localStorage.removeItem("token");
+        this.router.navigate(["/login"]);
+    }
+
+    isLoggedIn() {
+        return this.userSvc.isUserLoggedIn();
+    }
 }

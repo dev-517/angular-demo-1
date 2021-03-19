@@ -34,7 +34,6 @@ export default class ProductListComponent {
         // hard to unit test
         // const svc = new ProductService(http);
         svc.get().subscribe((res: any) => {
-            console.log(res);
             this.products = res.data;
             this.loading = false;
         }, e => {

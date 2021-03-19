@@ -18,7 +18,7 @@ export default class ProductService {
     public get() {
         const options = {
             headers: {
-                authorization: ''
+                authorization: localStorage.getItem("token")
             }
         };
         return this.http.get("https://dl-product.herokuapp.com/api/products", options);
@@ -26,11 +26,21 @@ export default class ProductService {
 
     // payload/body
     public post(product) {
-        return this.http.post("https://dl-product.herokuapp.com/api/products", product);
+        const options = {
+            headers: {
+                authorization: localStorage.getItem("token")
+            }
+        };
+        return this.http.post("https://dl-product.herokuapp.com/api/products", product, options);
     }
 
     public getById(id: string) {
-        return this.http.get("https://dl-product.herokuapp.com/api/products/" + id);
+        const options = {
+            headers: {
+                authorization: localStorage.getItem("token")
+            }
+        };
+        return this.http.get("https://dl-product.herokuapp.com/api/products/" + id, options);
     }
 
     set reviews(data: any[]) {
