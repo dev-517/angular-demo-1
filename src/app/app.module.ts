@@ -25,6 +25,9 @@ import ReviewsComponent from "./reviews/reviews.component";
 import LoginComponent from "./login/login.component";
 import CommonModule from "./common/common.module";
 import AppRouterModule from "./app-router.module";
+import UserService from "./common/user.service";
+import ProductGaurd from "./products/product.gaurd";
+import ProductService from "./services/product.service";
 
 const ROUTES = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -56,8 +59,9 @@ const ROUTES = [
         AboutComponent, NotFoundComponent, ProductDetailComponent,
         NewReviewComponent, ReviewsComponent, LoginComponent],
     imports: [BrowserModule, FormsModule, HttpClientModule,
-        ReactiveFormsModule, AppRouterModule, CommonModule],
-    providers: [],
+        ReactiveFormsModule, AppRouterModule],
+
+    providers: [UserService, ProductService, ProductGaurd],
     bootstrap: [AppComponent]
 })
 export default class AppModule { }

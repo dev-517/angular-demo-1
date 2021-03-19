@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Form, FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import ProductService from "../services/product.service";
 
 
@@ -109,5 +109,12 @@ export default class ReactiveFormsComponent {
                 image: event.target.files[0]
             });
         }
+    }
+
+    public onDeactivate(): boolean {
+        if (this.frm.dirty && this.frm.valid) {
+            return false;
+        }
+        return true;
     }
 }

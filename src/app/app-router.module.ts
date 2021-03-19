@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterLink, RouterModule, RouterOutlet } from "@angular/router";
 import AboutComponent from "./about/about.component";
+import ProductResolver from "./common/product.resolver";
 import ContactComponent from "./contact/contact.component";
 import HomeComponent from "./home/home.component";
 import LoginComponent from "./login/login.component";
@@ -9,6 +10,7 @@ import AddProductComponent from "./products/add-product.component";
 import ProductDetailComponent from "./products/product-detail.component";
 import ProductListComponent from "./products/product-list.component";
 import ProductGaurd from "./products/product.gaurd";
+import ReactiveFormsComponent from "./products/reactive-forms.component";
 import NewReviewComponent from "./reviews/new-review.component";
 import ReviewsComponent from "./reviews/reviews.component";
 import UserListComponent from "./users/user-list.component";
@@ -17,13 +19,16 @@ const ROUTES = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     {
-        path: 'products', component: ProductListComponent,
+        path: 'products', resolve: [ProductResolver], component: ProductListComponent,
         canActivate: [ProductGaurd]
     },
     { path: 'about', component: AboutComponent },
     { path: 'contact', component: ContactComponent },
     { path: 'users', component: UserListComponent },
-    { path: 'new', canActivate: [ProductGaurd], component: AddProductComponent, pathMatch: "full" },
+    {
+        path: 'new', canActivate: [ProductGaurd], canDeactivate: [ProductGaurd],
+        component: ReactiveFormsComponent, pathMatch: "full"
+    },
     { path: 'login', component: LoginComponent },
     {
         path: 'products/:id', canActivate: [ProductGaurd],
@@ -38,6 +43,7 @@ const ROUTES = [
 
 @NgModule({
     imports: [RouterModule.forRoot(ROUTES)],
+    providers: [ProductGaurd, ProductResolver],
     exports: [RouterModule]
 })
 export default class AppRouterModule {

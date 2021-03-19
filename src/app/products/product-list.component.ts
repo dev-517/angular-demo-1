@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import ProductService from "../services/product.service";
 
 // pipe: transform data
@@ -29,16 +30,17 @@ export default class ProductListComponent {
     error: boolean = false;
 
     // constructor injection
-    constructor(svc: ProductService) {
-        this.loading = true;
-        // hard to unit test
-        // const svc = new ProductService(http);
-        svc.get().subscribe((res: any) => {
-            this.products = res.data;
-            this.loading = false;
-        }, e => {
-            this.error = true;
-            this.loading = false;
-        });
+    constructor(svc: ProductService, activatedRoute: ActivatedRoute) {
+        this.products = activatedRoute.snapshot.data[0].data;
+        // this.loading = true;
+        // // hard to unit test
+        // // const svc = new ProductService(http);
+        // svc.get().subscribe((res: any) => {
+        //     this.products = res.data;
+        //     this.loading = false;
+        // }, e => {
+        //     this.error = true;
+        //     this.loading = false;
+        // });
     }
 }
